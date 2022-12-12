@@ -46,3 +46,16 @@ jobs:
         run: >
           ls -la
           ./mdbook-katex/mdbook-katex --version
+
+  release-exec:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Exec
+        run: >
+          ls -la
+          curl -sSL https://github.com/lzanini/mdbook-katex/releases/download/v0.2.18/mdbook-katex-v0.2.18-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+          mdbook-katex --version
